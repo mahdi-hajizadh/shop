@@ -10,5 +10,5 @@ python main.py
 
 The demo lists three products, adds two items to the cart, applies a 10% discount, and prints the order. It uses the Python standard library.
 
-- `engin.py` defines products, carts, orders, and inventory rules.
+- `engine.py` defines products, carts, orders, and inventory rules.
 - `main.py` runs a sample purchase.

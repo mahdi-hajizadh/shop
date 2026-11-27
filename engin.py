@@ -52,7 +52,13 @@ class Shop:
         if product is None:
             print("Product not found")
             return
-        if product.stock < quantity:
+        if type(quantity) is not int or quantity <= 0:
+            print("Quantity must be a positive integer")
+            return
+        quantity_in_cart = sum(
+            item.quantity for item in self.cart.items if item.product is product
+        )
+        if quantity_in_cart + quantity > product.stock:
             print("Not enough stock")
             return
         self.cart.add(product, quantity)
@@ -64,6 +70,9 @@ class Shop:
     def checkout(self, customer, discount=0):
         if not self.cart.items:
             print("Cart is empty")
+            return
+        if not isinstance(discount, (int, float)) or not 0 <= discount <= 100:
+            print("Discount must be between 0 and 100")
             return
         total = self.calculate_total()
         total -= total * discount / 100
